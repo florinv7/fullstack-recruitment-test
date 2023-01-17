@@ -30,13 +30,13 @@ Page to list Rockets, is desirable that the page has a pagination (2 per page).
 Page to visualize the rocket details.
 In the rocket information we need rocket name, description, height, diameter, mass and photo.
 
-### Exercise 3
+## Bonus
 Solve [this exercise in hackerrank](https://www.hackerrank.com/challenges/three-month-preparation-kit-tree-preorder-traversal/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=preparation-kits&playlist_slugs%5B%5D=three-month-preparation-kit&playlist_slugs%5B%5D=three-month-week-eleven).
 
-After solving it, copy the code and send with the challenge.
+After solving it, copy the code and include it.
 
 
-## Considerations
+# Considerations
 - Using Typescript, node.js and React is a plus
 - The frameworks and libraries you could use for your solution is up to your choice
 - We will look for error handling, but we are not expecting all edge cases to be covered
