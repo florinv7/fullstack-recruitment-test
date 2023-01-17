@@ -38,7 +38,7 @@ After solving it, copy the code and send with the challenge.
 
 ## Considerations
 - Using Typescript, node.js and React is a plus
-- The frameworks and libraries is up to your choice
+- The frameworks and libraries you could use for your solution is up to your choice
 - We will look for error handling, but we are not expecting all edge cases to be covered
 - Using a responsive design is a plus
 - Adding tests is not mandatory, but is a big plus
