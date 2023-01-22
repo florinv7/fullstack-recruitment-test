@@ -1,26 +1,28 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import connectDB from './config/db'
+import { notFound, errorHandler } from './middleware/errorMiddleware';
+import rocketRoutes from './routes/rocketRoutes'
 
 dotenv.config();
 
-const rockets = require('./data/products')
+connectDB()
 
 const app: Express = express();
-const port = process.env.PORT;
 
 app.get("/", (req: Request, res: Response) => {
     res.send('API is running...')
 })
 
-app.get("/api/rockets", (req: Request, res: Response) => {
-    res.json(rockets)
-})
+app.use("/api/rockets", rocketRoutes)
 
-app.get("/api/rockets/:id", (req: Request, res: Response) => {
-    const rocket = rockets.find((r : any) => r._id == req.params.id)
-    res.json(rocket)
-})
+app.use(notFound)
 
-app.listen(port, () => {
-    console.log(`Server is running at: ${port}`);
+//middleware for error handling
+app.use(errorHandler)
+
+const PORT = process.env.PORT || "5000"
+
+app.listen(PORT, () => {
+    console.log(`Server is running at: ${PORT}`);
   });

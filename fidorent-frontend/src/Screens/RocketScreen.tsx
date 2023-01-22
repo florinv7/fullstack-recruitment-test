@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import { Rocket } from '../components/RocketCard'
-import rockets from './products'
+import axios from 'axios'
 import "./screens.css"
+import { parseRocket } from './HomeScreen'
 
 type Props = {}
 
 const RocketScreen = (props : Props ) => {
 
-  let { id } = useParams();
+  const { id } = useParams();
+  const [rocket, setRocket] = useState<Rocket | undefined>(undefined)
 
-  const rocket = rockets.find((r) => r._id === id)
+  useEffect(() => {
+    const fetchRocket = async () => {
+      const { data } = await axios.get(`/api/rockets/${id}`)
+
+      setRocket(parseRocket(data))
+    }
+
+    fetchRocket()
+  }, [id])
 
   return (
     <>

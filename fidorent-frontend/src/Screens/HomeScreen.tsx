@@ -6,6 +6,17 @@ import axios from 'axios'
 
 type Props = {}
 
+export function parseRocket(obj : any) : Rocket{
+    return {
+        description : obj.description,
+        diameter : obj.diameter,
+        height : obj.height,
+        id : obj._id,
+        mass : obj.mass,
+        name : obj.name,
+        photo : obj.photo || obj.photoUrl,
+    }
+}
 
 const HomeScreen = (props: Props) => {
 
@@ -19,18 +30,6 @@ const HomeScreen = (props: Props) => {
 
         fetchRockets()
     }, [])
-
-    const parseRocket = (obj : any) : Rocket => {
-        return {
-            description : obj.description,
-            diameter : obj.diameter,
-            height : obj.height,
-            id : obj._id,
-            mass : obj.mass,
-            name : obj.name,
-            photo : obj.photo,
-        }
-    }
 
   return (
     <>
