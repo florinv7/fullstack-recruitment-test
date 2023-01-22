@@ -3,9 +3,12 @@ import RocketCard from '../components/RocketCard'
 import { Row, Col } from 'react-bootstrap'
 import Pagination from 'react-bootstrap/Pagination';
 import { Rocket } from '../components/RocketCard'
+import Table from 'react-bootstrap/Table';
 import axios from 'axios'
 
-type Props = {}
+type Props = {
+    isAdmin : boolean
+}
 
 export function parseRocket(obj : any) : Rocket{
     return {
@@ -21,14 +24,16 @@ export function parseRocket(obj : any) : Rocket{
 
 const HomeScreen = (props: Props) => {
 
-    const [rockets, setRockets] = useState([])
+    const [rockets, setRockets] = useState<Rocket[] | undefined>([])
     const [currentPage, setCurrentPage] = useState(1)
     const [hasNext, setHasNext] = useState(false)
+
+    const { isAdmin } = props
 
     useEffect(() => {
         const fetchRockets = async () => {
             const { data } = await axios.get(`/api/rockets?page=${currentPage}`)
-            setRockets(data.rockets)
+            setRockets(data.rockets.map((r : any) => parseRocket(r)))
             setHasNext(data.hasNext)
         }
 
@@ -38,13 +43,34 @@ const HomeScreen = (props: Props) => {
   return (
     <>
         <h1>Rockets</h1>
+        {isAdmin ? 
+            <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                {rockets && rockets.map((rocket : Rocket) => (
+                    <tr>
+                    <td>{rocket.id}</td>
+                    <td>{rocket.name}</td>
+                    <td>{rocket.description}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table> :
         <Row>
-            {rockets.map((rocket : any) => (
-                <Col sm={12} md={6}>
-                    <RocketCard rocket={parseRocket(rocket)}></RocketCard>
-                </Col>
-            ))}
-        </Row>
+        {rockets && rockets.map((rocket : Rocket) => (
+            <Col sm={12} md={6}>
+                <RocketCard rocket={parseRocket(rocket)}></RocketCard>
+            </Col>
+        ))}
+    </Row>
+        }
+        
         <Pagination>
             
             {currentPage > 1 && <>

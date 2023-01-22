@@ -13,7 +13,8 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="/" element={<HomeScreen></HomeScreen>}></Route>
+            <Route path="/" element={<HomeScreen isAdmin={false}></HomeScreen>}></Route>
+            <Route path="/admin" element={<HomeScreen isAdmin={true}></HomeScreen>}></Route>
             <Route path="/rocket/:id" element={<RocketScreen></RocketScreen>}></Route>
           </Routes>
         </Container>
