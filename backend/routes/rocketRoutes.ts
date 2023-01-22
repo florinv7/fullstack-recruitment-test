@@ -11,9 +11,15 @@ const router = express.Router()
 router.get(
     "/",
     asyncHandler(async (req: Request, res: Response) => {
-        const rockets = await Rocket.find({})
+        const paginationSize = 2;
 
-        res.json(rockets)
+        console.log(req.query)
+        const page = req.query.page ? +req.query.page - 1 : 0
+
+        const rockets = await Rocket.find({}).skip(paginationSize * page).limit(paginationSize)
+        const hasNext = await Rocket.count() > paginationSize * page + paginationSize;
+        
+        res.json({ rockets, hasNext } )
     }))
 
 // @desc Fetch single rocket
