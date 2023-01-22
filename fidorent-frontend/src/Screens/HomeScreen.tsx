@@ -65,7 +65,7 @@ const HomeScreen = (props: Props) => {
         <Row>
         {rockets && rockets.map((rocket : Rocket) => (
             <Col sm={12} md={6}>
-                <RocketCard rocket={parseRocket(rocket)}></RocketCard>
+                <RocketCard rocket={rocket}></RocketCard>
             </Col>
         ))}
     </Row>
