@@ -1,13 +1,24 @@
-import React from 'react'
-import rockets from './products'
+import React, {useEffect, useState} from 'react'
 import RocketCard from '../components/RocketCard'
 import { Row, Col } from 'react-bootstrap'
 import { Rocket } from '../components/RocketCard'
+import axios from 'axios'
 
 type Props = {}
 
 
 const HomeScreen = (props: Props) => {
+
+    const [rockets, setRockets] = useState([])
+
+    useEffect(() => {
+        const fetchRockets = async () => {
+            const { data } = await axios.get("/api/rockets")
+            setRockets(data)
+        }
+
+        fetchRockets()
+    }, [])
 
     const parseRocket = (obj : any) : Rocket => {
         return {
