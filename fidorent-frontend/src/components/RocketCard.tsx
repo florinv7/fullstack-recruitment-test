@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom"
 import "./components.css"
 
 export interface Rocket {
@@ -22,15 +23,15 @@ const RocketCard = (props: Props) => {
 
   return (
     <Card className="my-3 py-3 rounderd">
-      <a href={`/rocket/${rocket.id}`}>
+      <Link to={`/rocket/${rocket.id}`}>
         <img src={rocket.photo} className="rocketCard" alt=""/>
-      </a>
+      </Link>
       <Card.Body>
-        <a href={`/rocket/${rocket.id}`}>
+        <Link to={`/rocket/${rocket.id}`}>
             <Card.Title as='div'>
                 <strong>{rocket.name}</strong>
             </Card.Title>
-        </a>
+        </Link>
     </Card.Body>
     </Card>
   );
