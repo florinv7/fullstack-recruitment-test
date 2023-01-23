@@ -9,7 +9,7 @@ export interface Rocket {
   height: number;
   diameter: number;
   mass: number;
-  photo: any;
+  photo: string;
   id: string;
 }
 

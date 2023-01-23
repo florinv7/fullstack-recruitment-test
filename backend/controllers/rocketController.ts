@@ -1,10 +1,11 @@
 import asyncHandler from 'express-async-handler'
 import Rocket from '../models/rocketModel'
+import { Request, Response } from 'express';
 
 // @desc Fetch all rockets
 // @route GET /api/rockets
 // @access Public
-const getRockets = asyncHandler(async (req, res) => {
+const getRockets = asyncHandler(async (req : Request, res : Response) => {
     const paginationSize = 2;
 
     console.log(req.query)
@@ -20,7 +21,7 @@ const getRockets = asyncHandler(async (req, res) => {
 // @desc Fetch single rocket
 // @route GET /api/rockets/:id
 // @access Public
-const getRocketById = asyncHandler(async (req, res) => {
+const getRocketById = asyncHandler(async (req : Request, res : Response) => {
     const rocket = await Rocket.findById(req.params.id)
 
     if (rocket) {
@@ -34,7 +35,7 @@ const getRocketById = asyncHandler(async (req, res) => {
 // @desc    Delete a rocket
 // @route   DELETE /api/rockets/:id
 // @access  Private/Admin
-const deleteRocket = asyncHandler(async (req, res) => {
+const deleteRocket = asyncHandler(async (req : Request, res : Response) => {
     const rocket = await Rocket.findById(req.params.id)
   
     if (rocket) {
@@ -49,10 +50,10 @@ const deleteRocket = asyncHandler(async (req, res) => {
   // @desc    Create a rocket
   // @route   POST /api/rockets
   // @access  Private/Admin
-  const createRocket = asyncHandler(async (req, res) => {
+  const createRocket = asyncHandler(async (req : Request, res : Response) => {
     const rocket = new Rocket({
       name: 'Sample name',
-      photoUrl: '/images/img1.jpg',
+      photo: '/images/sample.jpg',
       description: 'A rocket is a vehicle, missile or aircraft that uses thrust to propel itself through the air or into space. Rockets are powered by a combination of chemicals, such as liquid oxygen and kerosene, or solid fuel, and are designed to travel at high speeds and altitudes.',
       diameter: 0,
       height: 0,
@@ -66,12 +67,11 @@ const deleteRocket = asyncHandler(async (req, res) => {
   // @desc    Update a rocket
   // @route   PUT /api/rockets/:id
   // @access  Private/Admin
-  const updateRocket = asyncHandler(async (req, res) => {
+  const updateRocket = asyncHandler(async (req : Request, res : Response) => {
     const {
       name,
       description,
       photo,
-      photoUrl,
       diameter,
       height,
       mass
@@ -83,7 +83,6 @@ const deleteRocket = asyncHandler(async (req, res) => {
       rocket.name = name
       rocket.description = description
       rocket.photo = photo
-      rocket.photoUrl = photoUrl
       rocket.diameter = diameter
       rocket.height = height
       rocket.mass = mass

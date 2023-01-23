@@ -14,6 +14,8 @@ app.get("/", (req: Request, res: Response) => {
     res.send('API is running...')
 })
 
+app.use(express.json());
+
 app.use("/api/rockets", rocketRoutes)
 
 app.use(notFound)

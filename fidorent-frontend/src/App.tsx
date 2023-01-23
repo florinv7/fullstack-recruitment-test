@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./Screens/HomeScreen";
 import RocketScreen from "./Screens/RocketScreen";
+import RocketEditScreen from "./Screens/RocketEditScreen";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="/" element={<HomeScreen isAdmin={false}></HomeScreen>}></Route>
             <Route path="/admin" element={<HomeScreen isAdmin={true}></HomeScreen>}></Route>
             <Route path="/rocket/:id" element={<RocketScreen></RocketScreen>}></Route>
+            <Route path='/admin/rocket/:id/edit' element={<RocketEditScreen></RocketEditScreen>} />
           </Routes>
         </Container>
       </main>

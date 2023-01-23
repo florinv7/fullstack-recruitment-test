@@ -7,8 +7,7 @@ interface IRocket {
     height: number;
     diameter: number;
     mass: number;
-    photo?: any;
-    photoUrl?: string;
+    photo?: string;
 }
 
 // 2. Create a Schema corresponding to the document interface.
@@ -16,7 +15,7 @@ const rocketSchema = new Schema<IRocket>({
     name: {
         type: String,
         require: true,
-        unique: true
+        unique: false
     },
     description: {
         type: String,
@@ -37,13 +36,9 @@ const rocketSchema = new Schema<IRocket>({
         require: true,
         default: 0
     },
-    photoUrl: {
+    photo: {
         type: String,
         require: false
-    },
-    photo: {
-        data: Buffer,
-        contentType: String
     }
 }, {timestamps : true})
 
