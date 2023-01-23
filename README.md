@@ -43,3 +43,37 @@ After solving it, copy the code and include it.
 - Using a responsive design is a plus
 - Adding tests is not mandatory, but is a big plus
 - Provide a Readme to explain how to run the project and how to run the tests (in case they are present)
+
+# SOLUTION: RUN THE PROJECT
+
+Before starting run these commands to install the required packages
+
+- in the root folder 
+```
+npm install
+```
+
+- in frontend folder 
+```
+npm install
+```
+
+- in the root folder  run the following command
+```
+npm run data:import
+```
+to clean the current DB (I've set up a mongodb online so no need of installation)
+and fill it with some mock data 
+
+TO START THE BACKEND (will use port 5000 on localhost)
+- in root folder
+```
+npm start
+```
+
+TO START THE FRONTEND (will use port 3000 on localhost)
+- in frontend folder
+```
+npm start
+```
+
